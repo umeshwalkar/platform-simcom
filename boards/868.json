@@ -1,0 +1,26 @@
+{
+  "name": "SIMCom 868 module",
+  "url": "https://www.simcom.com",
+  "build": {
+    "core": "868",
+    "f_cpu": "260000000L",
+    "mcu": "ARM, MT2503",
+    "variant": "sim868"
+  },
+  "debug": {
+    "tools": {
+      "uart": {
+        "onboard": true,
+        "extra_cmds": [],
+        "load_cmd": [],
+        "server": {}
+      }
+    }
+  },  
+  "frameworks": ["embeddedat"],
+  "vendor": "SIMCOM",
+  "upload": {
+        "maximum_ram_size": 102400,
+        "maximum_size": 327680
+  }
+}
