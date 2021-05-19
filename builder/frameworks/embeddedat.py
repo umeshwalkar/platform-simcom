@@ -6,7 +6,7 @@
 from SCons.Script import DefaultEnvironment
 
 env = DefaultEnvironment()
-platform = "opencpu"
+platform = "embeddedat"
 module = platform + "-" + env.BoardConfig().get("build.core")
 m = __import__(module)       
 globals()[module] = m

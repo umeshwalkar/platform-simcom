@@ -5,16 +5,15 @@
   "url": "https://github.com/umeshwalkar/platform-simcom",
   "homepage": "http://www.beyondlogics.in/",
   "license": "Apache-2.0",
-  "engines": { "platformio": "^3.0.0" },
+  "engines": { 
+	"platformio": "^3.0.0" 
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/umeshwalkar/platform-simcom.git"
   },
   "version": "0.0.1",
-  "packageRepositories": [
-    "https://dl.bintray.com/platformio/dl-packages/manifest.json",
-    "http://dl.platformio.org/packages/manifest.json"
-  ],
+  "vendor" : "beyondlogics",	
   "frameworks": {
       "embeddedat": {
         "package": "framework-embeddedat",
