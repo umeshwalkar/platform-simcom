@@ -66,7 +66,7 @@ def dev_create_template(env):
     if False == os.path.isdir(D): 
         os.makedirs(D)
 
-    D1 = join(env.subst("$PROJECT_DIR"), "src", "app")
+    D1 = join(env.subst("$PROJECT_DIR"), "src", "application")
     if False == os.path.isdir(D1): 
         os.makedirs(D1)
         S = join(env.PioPlatform().get_package_dir("framework-simcom"), "templates", env.BoardConfig().get("build.core"), "src", "app")
@@ -83,6 +83,80 @@ def dev_create_template(env):
     S = join(env.PioPlatform().get_package_dir("framework-simcom"), "templates", env.BoardConfig().get("build.core"))
     if False == os.path.isfile( join(env.subst("$PROJECT_DIR"), "SIM868M32.bat") ):
         copyfile( join(S, "SIM868M32.bat"), join(env.subst("$PROJECT_DIR"), "SIM868M32.bat") )                    	
+
+    #copy "core" files
+    D = join(env.subst("$PROJECT_DIR"), "core")
+    if False == os.path.isdir(D): 
+        os.makedirs(D)    
+        S = join(env.PioPlatform().get_package_dir("framework-simcom"), "templates", env.BoardConfig().get("build.core"), "core")
+        F = [
+            "core.lib",
+            "SIM868M32_EAT.cfg",
+            "scat_SIM868M32.txt",                                              
+        ]
+        for I in F:
+            dst = join(D, I)
+            if False == os.path.isfile(dst): 
+                copyfile(join(S, I), dst) 
+ 
+    #copy "core->inc" files
+    D1 = join(env.subst("$PROJECT_DIR"), "core", "inc")
+    if False == os.path.isdir(D1): 
+        os.makedirs(D1)
+        S = join(env.PioPlatform().get_package_dir("framework-simcom"), "templates", env.BoardConfig().get("build.core"), "core", "inc")
+        F = [
+            "app_interface.h",
+            "eat_audio.h",
+            "eat_clib_define.h", 
+            "eat_flash.h", 
+            "eat_fs.h", 
+            "eat_fs_errcode.h", 
+            "eat_fs_type.h", 
+            "eat_gps.h", 
+            "eat_interface.h", 
+            "eat_mem.h", 
+            "eat_modem.h", 
+            "eat_network.h", 
+            "eat_nvram.h", 
+            "eat_other.h", 
+            "eat_periphery.h", 
+            "eat_sim.h", 
+            "eat_soft_sim.h", 
+            "eat_timer.h", 
+            "eat_type.h", 
+            "eat_uart.h", 
+        ]
+        for I in F:
+            dst = join(D1, I)
+            if False == os.path.isfile(dst): 
+                copyfile(join(S, I), dst) 
+
+    #copy "core->SIM868M32_EMBEDDEDAT" files
+    D1 = join(env.subst("$PROJECT_DIR"), "core", "SIM868M32_EMBEDDEDAT")
+    if False == os.path.isdir(D1): 
+        os.makedirs(D1)
+        S = join(env.PioPlatform().get_package_dir("framework-simcom"), "templates", env.BoardConfig().get("build.core"), "core", "SIM868M32_EMBEDDEDAT")
+        F = [
+            "1418B01SIM868M32_EAT.cfg",
+            "app",                                                     
+            "appnull",
+            "BPLGUInfoCustomAppSrcP_MT6261_S00_1418B01SIM868M32_EAT",
+            "COREAPI",
+            "EXT_BOOTLOADER",
+            "ROM",
+            "ROM_VIVA",
+            "SIM868M32_EAT.cfg",
+            "SIM868M32_EAT_BOOTLOADER.bin",
+            "SIM868M32_EAT_core_only.cfg",
+            "SIM868M32_EAT_PCB01_gprs_MT6261_S00.elf",
+            "SIM868M32_EAT_PCB01_gprs_MT6261_S00.sym",
+            "SIM868M32_EAT_PCB01_gprs_MT6261_S00_limit.sym",
+            "VIVA",
+        ]
+        for I in F:
+            dst = join(D1, I)
+            if False == os.path.isfile(dst): 
+                copyfile(join(S, I), dst)  
 
 #def dev_compiler(env):
 #    env.Replace(
