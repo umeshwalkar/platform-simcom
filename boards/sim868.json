@@ -2,7 +2,7 @@
   "name": "SIMCom 868 module",
   "url": "https://www.simcom.com",
   "build": {
-    "core": "868",
+    "core": "sim868",
     "f_cpu": "260000000L",
     "mcu": "ARM, MT2503",
     "variant": "sim868"

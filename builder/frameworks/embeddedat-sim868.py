@@ -20,24 +20,69 @@ def dev_create_template(env):
     D = join(env.subst("$PROJECT_DIR"), "build")
     if False == os.path.isdir(D): 
         os.makedirs(D)
-        S = join(env.PioPlatform().get_package_dir("framework-simcom"), "templates", env.BoardConfig().get("build.core"))
+    
+        S = join(env.PioPlatform().get_package_dir("framework-simcom"), "templates", env.BoardConfig().get("build.core"), "build")
         F = [
-            "build/app_build.mak",
-            "build/Makefile",
-            "build/option.mak",
-            "build/user.mak",                                    
+            "app_build.mak",
+            "Makefile",
+            "option.mak",
+            "user.mak",                                           
         ]
         for I in F:
             dst = join(D, I)
             if False == os.path.isfile(dst): 
                 copyfile(join(S, I), dst) 
+    
+    D1 = join(env.subst("$PROJECT_DIR"), "build", "winmake")
+    if False == os.path.isdir(D1): 
+        os.makedirs(D1)
+            
+        S = join(env.PioPlatform().get_package_dir("framework-simcom"), "templates", env.BoardConfig().get("build.core"), "build", "winmake")
+        F = [
+            "appgen.exe",
+            "cmp.exe",
+            "cp.exe",
+            "diff.exe",
+            "gdate.exe",
+            "gecho.exe",
+            "ginstall.exe",
+            "grep.exe",  
+            "make.exe",
+            "mv.exe",
+            "patch.exe",
+            "pwd.exe",                                             
+            "rm.exe",
+            "upx.exe",
+            "zip.exe",
+        ]
+        for I in F:
+            dst = join(D1, I)
+            if False == os.path.isfile(dst): 
+                copyfile(join(S, I), dst) 
+
     #return
     #copy main.c if file not exist
     D = join(env.subst("$PROJECT_DIR"), "src")
-    S = join(env.PioPlatform().get_package_dir("framework-simcom"), "templates", env.BoardConfig().get("build.core"))
-    if False == os.path.isfile( join(D, "main.c") ):
-        copyfile( join(S, "main.c"), join(D, "main.c") )                    
+    if False == os.path.isdir(D): 
+        os.makedirs(D)
 
+    D1 = join(env.subst("$PROJECT_DIR"), "src", "app")
+    if False == os.path.isdir(D1): 
+        os.makedirs(D1)
+        S = join(env.PioPlatform().get_package_dir("framework-simcom"), "templates", env.BoardConfig().get("build.core"), "src", "app")
+        F = [
+            "main.c",
+            "makefile",                                                     
+        ]
+        for I in F:
+            dst = join(D1, I)
+            if False == os.path.isfile(dst): 
+                copyfile(join(S, I), dst) 
+    
+    #copy SIM868M32.bat if file not exist
+    S = join(env.PioPlatform().get_package_dir("framework-simcom"), "templates", env.BoardConfig().get("build.core"))
+    if False == os.path.isfile( join(env.subst("$PROJECT_DIR"), "SIM868M32.bat") ):
+        copyfile( join(S, "SIM868M32.bat"), join(env.subst("$PROJECT_DIR"), "SIM868M32.bat") )                    	
 
 #def dev_compiler(env):
 #    env.Replace(
@@ -82,7 +127,7 @@ def dev_init(env, platform):
             join("$PROJECT_DIR", "core"),
             join("$PROJECT_DIR", "output"), 
             join("$PROJECT_DIR", "src"), 
-			join("$PROJECT_DIR", "build")
+            join("$PROJECT_DIR", "build")
         ],        
         #CFLAGS = [
         #    "-Os",
