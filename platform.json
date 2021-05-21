@@ -28,7 +28,7 @@
         "type": "framework",
         "version": "https://github.com/umeshwalkar/framework-simcom.git"
     },    
-    "toolchain-armcc": {
+    "toolchain-armcc-simcom": {
         "type": "toolchain",
         "version": "https://github.com/umeshwalkar/LIB/raw/master/simcom/toolchain-armcc-rcvt-v3.1-build-569.zip"
     }      
