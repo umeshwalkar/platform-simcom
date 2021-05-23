@@ -1,6 +1,6 @@
-# WizIO 2019 Georgi Angelov
-#   http://www.wizio.eu/
-#   https://github.com/Wiz-IO/platform-quectel
+# 2021 Umesh Walkar
+#   http://www.beyondlogics.in/
+#   https://github.com/umeshwalkar/platform-simcom
 
 from platform import system
 from platformio.managers.platform import PlatformBase
