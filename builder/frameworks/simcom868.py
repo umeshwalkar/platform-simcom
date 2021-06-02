@@ -1,6 +1,6 @@
-# WizIO 2018 Georgi Angelov
-# http://www.wizio.eu/
-# https://github.com/Wiz-IO
+# 2021 Umesh Walkar
+#   http://www.beyondlogics.in/
+#   https://github.com/umeshwalkar/platform-simcom
 
 import os
 import sys
