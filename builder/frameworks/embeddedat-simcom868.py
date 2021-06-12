@@ -180,16 +180,27 @@ def dev_create_template(env):
 def dev_init(env, platform):
     dev_create_template(env)
 #    dev_compiler(env)
-    framework_dir = env.PioPlatform().get_package_dir("framework-simcom")
-    core = env.BoardConfig().get("build.core")     
-    variant = env.BoardConfig().get("build.variant")  
+    # Multiple actions
+    env.AddCustomTarget(
+        name="pioenv",
+        dependencies=None,
+        actions=[
+          "pio --version",
+          "python --version"
+        ],
+        title="Core Env",
+        description="Show PlatformIO Core and Python versions"
+    )
+    #framework_dir = env.PioPlatform().get_package_dir("framework-simcom")
+    #core = env.BoardConfig().get("build.core")     
+    #variant = env.BoardConfig().get("build.variant")  
     #lib_dir = join(framework_dir, "libraries")
     #linker = join(lib_dir, "c_{}.ld".format(core))
-    env.firmware = env.BoardConfig().get("build.firmware", "").replace("-", "_").replace(".", "_").upper()   
+    #env.firmware = env.BoardConfig().get("build.firmware", "").replace("-", "_").replace(".", "_").upper()   
     env.Append(
-       CPPDEFINES = [ # -D                         
-            platform.upper(), "CORE_" + core.upper().replace("-", "_"),            
-        ],        
+    #   CPPDEFINES = [ # -D                         
+    #        platform.upper(), "CORE_" + core.upper().replace("-", "_"),            
+    #    ],        
         CPPPATH = [ # -I
         #    join(framework_dir, platform, core),
         #    join(framework_dir, platform, core, "include"),
@@ -198,10 +209,10 @@ def dev_init(env, platform):
         #    join(framework_dir, platform, core, "cloud", "http", "inc"),
         #    join(framework_dir, platform, core, "cloud", "protocol", "mqtt", "inc"),
         #    join(framework_dir, platform, core, "cloud", "entity", "gitwizs", "inc"),                        
-            join("$PROJECT_DIR", "core"),
-            join("$PROJECT_DIR", "output"), 
-            join("$PROJECT_DIR", "src"), 
-            join("$PROJECT_DIR", "build")
+            join("$PROJECT_DIR", "core", "inc"),
+    #        join("$PROJECT_DIR", "output"), 
+    #        join("$PROJECT_DIR", "src", "application"), 
+    #        join("$PROJECT_DIR", "build")
         ],        
         #CFLAGS = [
         #    "-Os",
